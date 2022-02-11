@@ -11,28 +11,18 @@ client = Client(api_key, api_secret, tld="us")
 
 def getminutedata(symbol, interval, lookback): 
     frame = pd.DataFrame(client.get_historical_klines(symbol, interval, lookback+' m ago UTC'))
-    print(frame)
+    
 
+    # cuts the frame by index from 30rowx12column -> 30rows x 5 columns
+    frame = frame.iloc[:,:6]
+    frame.columns = ['Time', 'Open', 'High', 'Low', 'Close', 'Volume']
+    # sets the index of data frame to 'Time' for so our output is measured by timestamps
+    frame = frame.set_index('Time')
+    # translate timestamps from unix time to normal time
+    frame.index = pd.to_datetime(frame.index, unit='ms')
+    frame = frame.astype(float) # creates more compact numbers by translating to float? ? You need to research this method it seems really cool
+    
     return frame
 
 getminutedata('BTCUSDT', '1m', '30')
 
-
-# def getminutedata(symbol, interval, lookback):
-#     frame = pd.DataFrame(client.get_historical_klines(symbol, interval, lookback+' min ago UTC'))
-#     print(frame)
-#     frame = frame.iloc[:,:6]
-
-#     frame.columns = ['Time', 'Open', 'High', 'Low', 'Close', 'Volume']
-#   #set index of data frame to time - timestamps as index (its given in unix time (seconds since the year 1970 lol))
-#   # all numbers are stored as strings in the data frame, youll have to later transform these to float values
-#     frame = frame.set_index('Time')
-
-# #so we're going to translate the unix time to normal timestap 
-
-#     frame.index = pd.to_datetime(frame.index, unit='ms')
-#     frame = frame.astype(float)
-#     return frame
-
-
-# getminutedata('BTCUSDT','1m', '30')
