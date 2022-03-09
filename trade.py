@@ -7,13 +7,13 @@ api_key = "CVep5onAnPW24gJnnfqFCI22FlJoC26WgmCF9TVmj2k33ZSyiKcLUna1x1SQmWxD"
 
 client = Client(api_key, api_secret, tld="us")
 
-# databymin:
+# getdatabymin:
 #    returns a data frame of currency price info on your cryptocurrency
 #    from the last 30 minutes, indexed by the minute
 # symbol - 
 # interval - 
 # lookback - 
-def databymin(symbol, interval, lookback): 
+def getdatabymin(symbol, interval, lookback): 
     frame = pd.DataFrame(client.get_historical_klines(symbol, interval, lookback+' m ago UTC'))
     # cuts the frame by index from 30rowx12column -> 30rows x 5 columns
     frame = frame.iloc[:,:6]
@@ -27,7 +27,7 @@ def databymin(symbol, interval, lookback):
     return frame
 
 # analyzing cryptos
-cryptodata = databymin('DOGEUSDT', '1m', '30')
+cryptodata = getdatabymin('DOGEUSDT', '1m', '30')
 plt.plot(cryptodata)
 plt.show()
 
