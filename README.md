@@ -1,3 +1,3 @@
 # Python-Binance
  
-foundation for cryptotrading bot for summer 2022 w Usifu 
+foundation for cryptotrading bot for summer 2022 w U
