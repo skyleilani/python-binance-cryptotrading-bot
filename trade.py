@@ -2,8 +2,8 @@ from binance import Client
 import pandas as pd
 from matplotlib import pyplot as plt
 
-api_secret = "NQn0q2WkevPpBgxGuApVgaHZs1YdXM3u4kTzNAgdgS25QdGfsezrfbXlvRoiw80R"
-api_key = "CVep5onAnPW24gJnnfqFCI22FlJoC26WgmCF9TVmj2k33ZSyiKcLUna1x1SQmWxD"
+api_secret = "apisec"
+api_key = "apikey"
 
 client = Client(api_key, api_secret, tld="us")
 
