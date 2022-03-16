@@ -6,6 +6,7 @@ api_secret = "apisec"
 api_key = "apikey"
 
 client = Client(api_key, api_secret, tld="us")
+print("successful sign in")
 
 # getdatabymin:
 #    returns a data frame of currency price info on your cryptocurrency
